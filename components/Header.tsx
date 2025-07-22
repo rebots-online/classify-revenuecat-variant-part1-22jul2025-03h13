@@ -410,3 +410,66 @@ const Header: React.FC<HeaderProps> = ({
           transition: all 0.3s ease-in-out;
         }
         .app-header.nav-open .hamburger-line:nth-child(1) {
+          transform: translateY(8px) rotate(45deg);
+        }
+        .app-header.nav-open .hamburger-line:nth-child(2) {
+          opacity: 0;
+        }
+        .app-header.nav-open .hamburger-line:nth-child(3) {
+          transform: translateY(-8px) rotate(-45deg);
+        }
+        .mobile-nav {
+          display: block;
+          position: absolute;
+          top: var(--header-height);
+          left: 0;
+          width: 100%;
+          background-color: var(--color-background-header, light-dark(#fff, #2c2c30));
+          border-bottom: 1px solid light-dark(#e0e0e0, #3a3a3f);
+        }
+        .mobile-nav ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+        .mobile-nav li {
+          border-bottom: 1px solid light-dark(#e0e0e0, #4a4a50);
+        }
+        .mobile-nav a,
+        .nav-button-mobile {
+          display: block;
+          padding: 0.75rem 1rem;
+          text-decoration: none;
+          color: var(--color-text);
+        }
+        .mobile-nav a:hover,
+        .nav-button-mobile:hover {
+          background-color: var(--color-accent);
+          color: #fff;
+        }
+        .mobile-nav-llm-toggle {
+          list-style: none;
+          padding: 0.5rem 1rem;
+          border-top: 1px solid light-dark(#e0e0e0, #4a4a50);
+        }
+        .llm-log-toggle-mobile {
+          width: 100%;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          background: none;
+          border: none;
+          padding: 0.6rem 0;
+          color: var(--color-text);
+        }
+        @media (min-width: 768px) {
+          .desktop-nav { display: block; }
+          .hamburger-button { display: none; }
+          .button-text-desktop { display: inline; }
+        }
+      `}</style>
+    </>
+  );
+};
+
+export default Header;

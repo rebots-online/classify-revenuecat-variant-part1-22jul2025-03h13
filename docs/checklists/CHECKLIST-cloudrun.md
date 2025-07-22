@@ -1,0 +1,7 @@
+- [x] Create initial architecture diagram under docs/architecture
+- [x] Implement missing OnboardingWalletModal component
+- [x] Repair truncated Header.tsx style block
+- [x] Add Dockerfile to build and serve app
+- [x] Update README with build/deploy instructions
+- [x] Verify build with `npm run build`
+- [ ] Commit changes
