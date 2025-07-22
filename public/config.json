@@ -1,0 +1,12 @@
+
+{
+  "revenueCat": {
+    "enabled": true
+  },
+  "lnPubKey": "",
+  "menuLinks": [
+    { "name": "About RobinsAI.World", "href": "#" },
+    { "name": "Learn AI", "href": "#" },
+    { "name": "AI Tools", "href": "#" }
+  ]
+}
