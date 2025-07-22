@@ -1,0 +1,15 @@
+```mermaid
+graph TD
+  DataProvider --> App
+  App --> Header
+  App --> Footer
+  App --> ContentContainer
+  App --> LlmLogPanel
+  App --> HowToUseModal
+  App --> PurchaseCreditsModal
+  App --> OnboardingWalletModal
+  ContentContainer --> textGeneration
+  ContentContainer --> parse
+  ContentContainer --> prompts
+  ContentContainer --> youtube
+```
