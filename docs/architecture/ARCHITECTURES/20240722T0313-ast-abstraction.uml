@@ -1,0 +1,100 @@
+@startuml
+' AST abstraction focusing on module relationships
+skinparam monochrome true
+skinparam shadowing false
+skinparam classAttributeIconSize 0
+
+package "App Shell" {
+  class App {
+    +state appConfig: AppConfig | null
+    +state contentBasis: ContentBasis | null
+    +state userCredits: number
+    +effect useEffect loadConfig()
+    +effect useEffect bootstrapCredits()
+    +effect useEffect persistCredits()
+    +method handleSubmit()
+    +method startContentGeneration()
+    +method proceedWithContent(url?, topic?)
+    +method handleLlmInteraction(interaction)
+  }
+}
+
+package "Context" {
+  class DataContext {
+    +createContext<Data | null>()
+  }
+}
+
+package "Components" {
+  class Header
+  class Footer
+  class CostIndicator
+  class LlmLogPanel {
+    +props interactions: LlmInteraction[]
+    +props onClear(): void
+    +props onToggle(): void
+  }
+  class HowToUseModal
+  class PurchaseCreditsModal
+  class OnboardingWalletModal
+  class ContentContainer {
+    +forwardRef<ContentContainerHandle>
+    +state spec: string
+    +state code: string
+    +state lessonPlan: string | null
+    +state handout: string | null
+    +state quiz: any | null
+    +callback generateEducationalMaterials(spec)
+    +callback regenerateCodeFromSpec(spec): Promise<string>
+    +effect generateContentFlow()
+    +effect emitLoadingState()
+  }
+  class EmbedCodeModal
+  class DeployModal
+}
+
+package "Lib" {
+  class textGeneration {
+    +generateText(options): TextGenerationResponse
+    +generateTextStream(options): StreamResult
+  }
+  class prompts {
+    +SPEC_FROM_VIDEO_PROMPT
+    +SPEC_FROM_TOPIC_PROMPT_TEMPLATE
+    +REFINE_SPEC_PROMPT_TEMPLATE
+    +LESSON_PLAN_PROMPT_TEMPLATE
+    +HANDOUT_PROMPT_TEMPLATE
+    +QUIZ_PROMPT_TEMPLATE
+  }
+  class parse {
+    +parseHTML(text): string
+    +parseJSON(text): any
+  }
+  class youtube {
+    +getYoutubeEmbedUrl(id): string
+    +validateYoutubeUrl(url): boolean
+    +getYouTubeVideoId(url): string | null
+  }
+}
+
+App --> DataContext
+App --> ContentContainer
+App --> Header
+App --> Footer
+App --> CostIndicator
+App --> LlmLogPanel
+App --> HowToUseModal
+App --> PurchaseCreditsModal
+App --> OnboardingWalletModal
+
+ContentContainer --> textGeneration
+ContentContainer --> prompts
+ContentContainer --> parse
+ContentContainer --> EmbedCodeModal
+ContentContainer --> DeployModal
+ContentContainer --> HowToUseModal
+ContentContainer --> DataContext
+
+LlmLogPanel --> App : callbacks
+
+@enduml
